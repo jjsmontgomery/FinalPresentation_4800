@@ -1,0 +1,92 @@
+---
+title: "PracComp Final Presentation"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  word_document: default
+  pdf_document: default
+---
+
+```{r}
+install.packages(c("car","rcompanion","lsmeans"))
+```
+
+# WRC Plant Diversity Data (stem counts and percent c) from 2004-2013
+
+## Importing Data
+
+```{r}
+#data2004 <- read.csv("6200_Fall2022/2004_WRCData.csv", header = T)
+#data2013 <- read.csv("6200_Fall2022/2013_WRCData.csv", header = T)
+```
+
+```{r}
+data2004 <- as.data.frame(read.csv("6200_Fall2022/2004_WRCData.csv", header = T))
+                          
+data2013 <- as.data.frame(read.csv("6200_Fall2022/2013_WRCData.csv", header = T))
+
+library(car)
+```
+
+```{r}
+head(data2004)
+```
+
+```{r}
+real.data <- read.csv("6200_Fall2022/Final Proj Data Revized.csv")
+```
+
+```{r}
+head(real.data)
+```
+
+```{r}
+library(ggplot2)
+```
+
+
+```{r}
+ggplot(data=real.data, mapping=aes(x=year, y=Mean, by= Treatment, color= Treatment)) + geom_line() +
+  geom_point(shape=15)
+```
+
+```{r}
+#ggsave(filename = "StemCount_2004_2013.png", plot = StemCount_2004_2013, width = 24, height = 40, dpi = 300, units = "cm")
+```
+
+
+```{r}
+#pdf(file = "StemCount_2004_2013.pdf", width = 24, height = 40)
+#plot(StemCount_2004_2013)
+#dev.off()
+```
+
+# Statistics
+
+## Summary
+
+```{r}
+summary(data2004)
+```
+  
+```{r}
+summary(data2004)
+```
+  
+## T-Test
+
+```{r}
+t.test(data2004$N.individuals)
+```
+
+```{r}
+t.test(data2013$N.individuals)
+```
+
+```{r}
+
+```
+
+
+
