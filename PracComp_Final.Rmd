@@ -9,7 +9,7 @@ output:
 ---
 
 ```{r}
-install.packages(c("car","rcompanion","lsmeans"))
+#install.packages(c("car","rcompanion","lsmeans"))
 ```
 
 # WRC Plant Diversity Data (stem counts and percent c) from 2004-2013
@@ -40,6 +40,7 @@ real.data <- read.csv("6200_Fall2022/Final Proj Data Revized.csv")
 ```{r}
 head(real.data)
 ```
+## Graphing
 
 ```{r}
 library(ggplot2)
@@ -47,19 +48,19 @@ library(ggplot2)
 
 
 ```{r}
-ggplot(data=real.data, mapping=aes(x=year, y=Mean, by= Treatment, color= Treatment)) + geom_line() +
+StemCount_2004_2013 <- ggplot(data=real.data, mapping=aes(x=year, y=Mean, by= Treatment, color= Treatment)) + geom_line() +
   geom_point(shape=15)
 ```
 
 ```{r}
-#ggsave(filename = "StemCount_2004_2013.png", plot = StemCount_2004_2013, width = 24, height = 40, dpi = 300, units = "cm")
+ggsave(filename = "StemCount_2004_2013.png", plot = StemCount_2004_2013, width = 24, height = 40, dpi = 300, units = "cm")
 ```
 
 
 ```{r}
-#pdf(file = "StemCount_2004_2013.pdf", width = 24, height = 40)
-#plot(StemCount_2004_2013)
-#dev.off()
+pdf(file = "StemCount_2004_2013.pdf", width = 24, height = 40)
+plot(StemCount_2004_2013)
+dev.off()
 ```
 
 # Statistics
@@ -82,10 +83,6 @@ t.test(data2004$N.individuals)
 
 ```{r}
 t.test(data2013$N.individuals)
-```
-
-```{r}
-
 ```
 
 
