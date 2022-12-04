@@ -12,7 +12,7 @@ output:
 #install.packages(c("car","rcompanion","lsmeans"))
 ```
 
-# WRC Plant Diversity Data (stem counts and percent c) from 2004-2013
+# WRC Plant Diversity Data (stem counts from 2004 & 2013)
 
 ## Importing Data
 
@@ -39,43 +39,78 @@ real.data <- read.csv("6200_Fall2022/Final Proj Data Revized.csv")
 
 ```{r}
 head(real.data)
+#real.data holds the mean number of species
 ```
+
+```{r}
+indi.data <- read.csv("6200_Fall2022/Final Proj Data Additional.csv")
+```
+
+```{r}
+head(indi.data)
+# indi.data holds the mean stem count for N Individuals
+```
+
 ## Graphing
 
 ```{r}
 library(ggplot2)
 ```
 
-
+### N Species
 ```{r}
-StemCount_2004_2013 <- ggplot(data=real.data, mapping=aes(x=year, y=Mean, by= Treatment, color= Treatment)) + geom_line() +
+NSpecies_2004_2013 <- ggplot(data=real.data, mapping=aes(x=Year, y=Mean, by= Treatment, color= Treatment)) + geom_line() +
   geom_point(shape=15)
 ```
 
 ```{r}
-ggsave(filename = "StemCount_2004_2013.png", plot = StemCount_2004_2013, width = 24, height = 40, dpi = 300, units = "cm")
+NSpecies_2004_2013
+```
+
+### N Individuals
+```{r}
+NIndiv_2004_2013 <- ggplot(data=indi.data, mapping=aes(x=Year, y=Mean, by= Treatment, color= Treatment)) + geom_line() +
+  geom_point(shape=15)
+```
+
+```{r}
+NIndiv_2004_2013
+```
+### Saving Graphs
+```{r}
+ggsave(filename = "NSpecies_2004_2013.png", plot = NSpecies_2004_2013, width = 24, height = 40, dpi = 300, units = "cm")
 ```
 
 
 ```{r}
-pdf(file = "StemCount_2004_2013.pdf", width = 24, height = 40)
-plot(StemCount_2004_2013)
+pdf(file = "NSpecies_2004_2013.pdf", width = 24, height = 40)
+plot(NSpecies_2004_2013)
 dev.off()
 ```
 
-# Statistics
+```{r}
+ggsave(filename = "NIndiv_2004_2013.png", plot = NIndiv_2004_2013, width = 24, height = 40, dpi = 300, units = "cm")
+```
 
-## Summary
+```{r}
+pdf(file = "NIndiv_2004_2013.pdf", width = 24, height = 40)
+plot(NIndiv_2004_2013)
+dev.off()
+```
+
+## Statistics
+
+### Summaries (2004 & 2013)
 
 ```{r}
 summary(data2004)
 ```
   
 ```{r}
-summary(data2004)
+summary(data2013)
 ```
   
-## T-Test
+## T-Test (2004 & 2013)
 
 ```{r}
 t.test(data2004$N.individuals)
