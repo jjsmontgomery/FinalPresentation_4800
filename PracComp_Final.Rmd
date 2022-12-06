@@ -17,11 +17,6 @@ output:
 ## Importing Data
 
 ```{r}
-#data2004 <- read.csv("6200_Fall2022/2004_WRCData.csv", header = T)
-#data2013 <- read.csv("6200_Fall2022/2013_WRCData.csv", header = T)
-```
-
-```{r}
 data2004 <- as.data.frame(read.csv("6200_Fall2022/2004_WRCData.csv", header = T))
                           
 data2013 <- as.data.frame(read.csv("6200_Fall2022/2013_WRCData.csv", header = T))
@@ -31,15 +26,20 @@ library(car)
 
 ```{r}
 head(data2004)
+# data2004 is all of the analyzed stem count data (N Species & N Individuals) and Sharron-Wiener Index (H', Hmax, EH) separated by treatment (X) for the year 2004
+```
+```{r}
+head(data2013)
+# data2013 is all of the analyzed stem count data (N Species & N Individuals) and Sharron-Wiener Index (H', Hmax, EH) separated by treatment (X) for the year 2013
 ```
 
 ```{r}
-real.data <- read.csv("6200_Fall2022/Final Proj Data Revized.csv")
+species.data <- read.csv("6200_Fall2022/Final Proj Data Revized.csv")
 ```
 
 ```{r}
-head(real.data)
-#real.data holds the mean number of species
+head(species.data)
+#species.data holds the mean stem count of N species for 2004 & 2013 separated by treatment
 ```
 
 ```{r}
@@ -48,7 +48,7 @@ indi.data <- read.csv("6200_Fall2022/Final Proj Data Additional.csv")
 
 ```{r}
 head(indi.data)
-# indi.data holds the mean stem count for N Individuals
+# indi.data holds the mean stem count of N Individuals for 2004 & 2013 separated by treatment
 ```
 
 ## Graphing
@@ -59,12 +59,13 @@ library(ggplot2)
 
 ### N Species
 ```{r}
-NSpecies_2004_2013 <- ggplot(data=real.data, mapping=aes(x=Year, y=Mean, by= Treatment, color= Treatment)) + geom_line() +
+NSpecies_2004_2013 <- ggplot(data=species.data, mapping=aes(x=Year, y=Mean, by= Treatment, color= Treatment)) + geom_line() +
   geom_point(shape=15)
 ```
 
 ```{r}
 NSpecies_2004_2013
+#Mean N Species Stem Count - This graph represents the mean number of species (N Species) from the sampled quadrants separated by treatment in the years 2004 and 2013
 ```
 
 ### N Individuals
@@ -75,6 +76,7 @@ NIndiv_2004_2013 <- ggplot(data=indi.data, mapping=aes(x=Year, y=Mean, by= Treat
 
 ```{r}
 NIndiv_2004_2013
+# Mean N Individuals Stem Count - This graph represents the mean stem count of all species (N Individuals) from the sampled quadrants separated by treatment in the years 2004 and 2013. 
 ```
 ### Saving Graphs
 ```{r}
@@ -101,23 +103,40 @@ dev.off()
 ## Statistics
 
 ### Summaries (2004 & 2013)
-
 ```{r}
 summary(data2004)
+# 2004 Data summary – The number of species that grew a stem (N Species). The total number of stems grown, aka Stem Count (N Individuals). The Shannon-Wiener index of diversity (H’). The maximum value possible for a community with any number of species and equal abundance (Hmax). A numerical value for species evenness (EH) 
 ```
   
 ```{r}
 summary(data2013)
+# 2013 Data summary – The number of species that grew a stem (N Species). The total number of stems grown, aka Stem Count (N Individuals). The Shannon-Wiener index of diversity (H’). The maximum value possible for a community with any number of species and equal abundance (Hmax). A numerical value for species evenness (EH)
 ```
   
-## T-Test (2004 & 2013)
+### T-Test (2004 & 2013)
 
+#### T-Test on N Species in 2004
 ```{r}
-t.test(data2004$N.individuals)
+t.test(data2004$N.species)
+# One Sample T-Test results on the number of plant species for the year 2004
 ```
 
+#### T-Test on N Species in 2013
+```{r}
+t.test(data2013$N.species)
+# One Sample T-Test results on the number of plant species for the year 2013
+```
+
+#### T-Test on N Individuals in 2004
+```{r}
+t.test(data2004$N.individuals)
+# One Sample T-Test results on the number of individual stems only for the year 2004
+```
+
+#### T-Test on N Individuals in 2013
 ```{r}
 t.test(data2013$N.individuals)
+# One Sample T-Test results on the number of individual stems only for the year 2013
 ```
 
 
