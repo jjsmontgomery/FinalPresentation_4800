@@ -1,5 +1,5 @@
 # FinalPresentation_4800
-Jj Montgomery, Garret Gaddy, Joshua Zimmerman,Miracle Dudley,Chase Ross
+Jj Montgomery, Garret Gaddy, Joshua Zimmerman, Miracle Dudley, Chase Ross
 
 ## Purpose of the experiment: 
 The purpose of the West Research Campus experiment is to observe the disturbance influenced by the environment.
