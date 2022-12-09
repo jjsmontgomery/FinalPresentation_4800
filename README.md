@@ -17,7 +17,7 @@ The WRC experimental design objective is to observe how organisms are influenced
 ## Task List: 
 1. Install packages
 2. Seperated the WRC Plant Diversity into the years 2004 and 2013
-  a. These were saved as csv files named data2004 and data2013
+  - These were saved as csv files named data2004 and data2013
 3. The head of each data file was curated which divides each data set into the following categories: Treatment, N. Species, N. Individuals, Sharron-Wiener Index (H’), Hmax, and EH. 
 4. The csv files were then further broken down to analyze the mean stem count of N species (species data) and N individuals (indi data). 
 5. A graph was then created to display the mean number of species within the year 2004 and 2013. 
